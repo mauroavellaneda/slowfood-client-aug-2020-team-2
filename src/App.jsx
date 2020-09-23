@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-
-class App extends Component {
-  render() {
-    return (
-      <>
-      <h1>Slowfood</h1>
-      </>
-    )
-  }
-}
-
+const App = () => {
+  return (
+    <>
+      <section data-cy='header'>
+        <h1>Menu List</h1>
+      </section>
+    </>
+  );
+};
 
 export default App;
