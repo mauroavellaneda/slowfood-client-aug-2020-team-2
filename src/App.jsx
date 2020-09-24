@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react'
 
-const App = () => {
-  return (
-    <>
-      <section data-cy='header'>
-        <h1>Menu List</h1>
-      </section>
-    </>
-  );
-};
+export class App extends Component {
+  render() {
+    return (
+      <>
+      <h1 data-cy='header'>Menu List</h1>
+      </>
+    )
+  }
+}
 
-export default App;
+export default App
