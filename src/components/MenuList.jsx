@@ -19,7 +19,10 @@ class MenuList extends Component {
     let menu;
     if(this.state.menuList.length > 0) {
       menu = this.state.menuList.map(product => {
-        return <div data-cy={'product-' + product.id}>{product}</div>
+        return <div data-cy={'product-' + product.id}>
+          <h3>{ product.name }</h3>
+          <p>{ product.price }</p>
+        </div>
       })
     }
     return (
