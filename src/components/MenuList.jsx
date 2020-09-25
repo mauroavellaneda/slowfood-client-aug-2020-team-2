@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getData } from '../modules/menu'
+import { getProducts } from '../modules/menu'
 
 class MenuList extends Component {
   state = {
@@ -11,7 +11,7 @@ class MenuList extends Component {
   }
 
   async getMenuList() {
-    let result = await getData();
+    let result = await getProducts();
     this.setState({ menuList: result })
   }
 

@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const getData = async() => {
+const getProducts = async() => {
   let response = await axios.get('/products')
   return response.data.products
 }
 
-export { getData };
+export { getProducts };
