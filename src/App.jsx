@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from "react";
+import MenuList from "./components/MenuList";
 
-export class App extends Component {
-  render() {
-    return (
-      <>
-      <h1 data-cy='header'>Menu List</h1>
-      </>
-    )
-  }
-}
+const App = () => {
+  return (
+    <>
+      <h1 data-cy="header">Johan's Pizzeria</h1>
+      <MenuList />
+    </>
+  );
+};
 
-export default App
+export default App;

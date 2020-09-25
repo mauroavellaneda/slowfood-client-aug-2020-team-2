@@ -1,5 +1,5 @@
 describe("Visitor are able to see menu list", () => {
-  before(() => {
+  beforeEach(() => {
     cy.server();
     cy.route({
       method: 'GET',
@@ -10,18 +10,18 @@ describe("Visitor are able to see menu list", () => {
   })
 
   it('visitor can see menu title',() => {
-    cy.get('[data-cy="header"]').should('contain', 'Menu List')
+    cy.get('[data-cy="header"]').should('contain', "Johan's Pizzeria")
   }); 
 
   it("shows first item", () => {
-    cy.get("[data-cy=product-1]").within(() => {
+    cy.get("[data-cy='product-1']").within(() => {
       cy.contains("Mauros amazing Pizza");
       cy.contains("150");
     });
   });
 
   it("shows second item", () => {
-    cy.get("[data-cy=product-2]").within(() => {
+    cy.get("[data-cy='product-2']").within(() => {
       cy.contains("Kiwi pizza");
       cy.contains("100");
     });
