@@ -1,14 +1,29 @@
 import React, { Component } from "react";
 import { getProducts } from "../modules/menu";
 import SignUpForm from "./SignUpForm";
-import { authenticate } from '../modules/auth';
+import { authenticate } from "../modules/auth";
+import LoginForm from "./LoginForm";
 
 
 class MenuList extends Component {
   state = {
     menuList: [],
     renderSignUpForm: false,
-    authenticate: false
+    renderLoginForm: false,
+    authenticate: false,
+  };
+  onSignUp = async (e) => {
+    e.preventDefault();
+    const response = await authenticate(
+      e.target.email.value,
+      e.target.password.value,
+      e.target.confirm_password.value
+    );
+    if (response.authenticated) {
+      this.setState({ authenticated: true });
+    } else {
+      this.setState({ message: response.message, renderSignUpForm: false });
+    }
   };
 
   componentDidMount() {
@@ -42,21 +57,24 @@ class MenuList extends Component {
         Sign Up
       </button>
     );
-
-    return (<div>{menu}</div>), (<div>{renderSignUp}</div>);
-  }
-  onSignUp = async e => {
-    e.preventDefault();
-    const response = await authenticate (
-      e.target.email.value, 
-      e.target.password.value,
-      e.target.confirm_password.value  
+    const renderLogin = this.state.renderLoginForm ? (
+      <LoginForm />
+    ) : (
+      <button
+        id="login"
+        onClick={() => this.setState({ renderLoginForm: true })}
+      >
+        Login
+      </button>
     );
-    if (response.authenticated) {
-      this.setState({ authenticated: true });
-    } else {
-      this.setState({ message: response.message, renderSignUpForm: false });
-    }
+
+    return (
+      <>
+      <div>{menu}</div>
+      <div>{renderSignUp}</div><br/>
+      <div>{renderLogin}</div>
+      </>
+    );
   }
 }
 
