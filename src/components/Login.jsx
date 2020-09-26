@@ -1,44 +1,43 @@
-import React, { Component } from 'react';
-import LoginForm from "./LoginForm";
-import authLogin from "../modules/auth"
+import React, { Component } from 'react'
+import { signIn } from '../modules/authentication'
+import LoginForm from './LoginForm'
 
 
-class Login = () => {
-
+class Login extends Component {
   state = {
     renderLoginForm: false,
     authLogin: false
+  }
 
-  }  
-  
-  onLogin = async (e) => {
-    e.preventDefault();
-    const response = await authLogin(
-      e.target.login_email.value,
-      e.target.login_password.value,
-    );
-    if (response.authenticated) {
-      this.setState({ authenticated: true });
+  login = async (event) => {
+    event.preventDefault()
+    const email = event.target.email.value
+    const password = event.target.password.value
+
+    const authResponse = await signIn(email, password)
+
+    if (authResponse.authenticated) {
+      this.props.authenticated()
     } else {
-      this.setState({ message: response.message, renderLoginForm: false });
+      this.props.renderLoginError(authResponse.data)
     }
-  };
-  return (
-    <>
-    {
-      this.state.renderLoginForm  ? (
-        <LoginForm />
-      ) : (
-        <button
-          id="login"
-          onClick={() => this.setState({ renderLoginForm: true })}
-        >
-          Login
-        </button>
+  }
 
-      )}
-    </>
-  )
+  render() {
+    
+    return (
+      <>
+      {
+        this.state.renderLoginForm ? (
+          <LoginForm 
+            login={this.login}
+          />
+        ) : (
+          <button id='login' onClick={() => this.setState({renderLoginForm: true})} data-cy="toggle-login">Login</button>
+        )
+      }
+      </>
+    )
+  }
 }
-
 export default Login

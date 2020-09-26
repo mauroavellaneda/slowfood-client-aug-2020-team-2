@@ -32,8 +32,6 @@ class MenuList extends Component {
     return (
       <>
       <div>{menu}</div>
-      <div>{renderSignUp}</div><br/>
-      <div>{renderLogin}</div>
       </>
     );
   }
