@@ -1,8 +1,8 @@
 import React from "react";
 
-const SignUpForm = props => {
+const SignUpForm = ({ submitFormHandler }) => {
     return (
-        <form id="signup-form">
+        <form onSubmit={submitFormHandler} id="signup-form">
             <label>Email</label>
             <input name="email" type="email" id="email"></input>
 
@@ -10,7 +10,7 @@ const SignUpForm = props => {
             <input name="password" type="password" id="password"></input>
 
             <label>Confirm Password</label>
-            <input name="confirm-password" type="password" id="confirm-password"></input>
+            <input name="confirm_password" type="password" id="confirm_password"></input>
 
             <button id="submit">Submit</button>
             
