@@ -1,21 +1,41 @@
-import React from "react";
+import React, { Component } from "react";
 import MenuList from "./components/MenuList";
-import Login from './components/LoginForm'
+import Login from "./components/Login";
 
+class App extends Component {
+  state = {
+    authenticated: false,
+  };
+  render() {
+    let message;
 
+    this.state.authenticated &&
+      (message = (
+        <p id="message">
+          Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}
+        </p>
+      ));
 
-const App = () => {
-  return (
-    <>
-      <h1 data-cy="header">Johan's Pizzeria</h1>
-      
-      <MenuList />
-      <Login />
-      
-      
-      
-    </>
-  );
-};
+    this.state.authError &&
+      (message = <p id="message">{this.state.authError}</p>);
+
+    return (
+      <>
+        {message}
+        <h1 data-cy="header">Johan's Pizzeria</h1>
+
+        <MenuList />
+        <Login
+          authenticated={() =>
+            this.setState({ authError: undefined, authenticated: true })
+          }
+          renderLoginError={(authResponse) =>
+            this.setState({ authError: authResponse })
+          }
+        />
+      </>
+    );
+  }
+}
 
 export default App;

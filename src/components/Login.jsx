@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
-import { signIn } from '../modules/authentication'
+import { authLogin } from '../modules/auth'
 import LoginForm from './LoginForm'
 
 
 class Login extends Component {
   state = {
     renderLoginForm: false,
-    authLogin: false
   }
 
-  login = async (event) => {
-    event.preventDefault()
-    const email = event.target.email.value
-    const password = event.target.password.value
-
-    const authResponse = await signIn(email, password)
-
+  onLogin = async (e) => {
+    e.preventDefault();
+    const authResponse = await authLogin(
+      e.target.login_email.value,
+      e.target.login_password.value,
+    );
     if (authResponse.authenticated) {
       this.props.authenticated()
     } else {
-      this.props.renderLoginError(authResponse.data)
+      this.props.renderLoginError(authResponse.data);
     }
-  }
+  };
 
   render() {
     
@@ -30,7 +28,7 @@ class Login extends Component {
       {
         this.state.renderLoginForm ? (
           <LoginForm 
-            login={this.login}
+          submitFormHandler={this.onLogin}
           />
         ) : (
           <button id='login' onClick={() => this.setState({renderLoginForm: true})} data-cy="toggle-login">Login</button>
