@@ -24,7 +24,7 @@ class App extends Component {
         {message}
         <h1 data-cy="header">Johan's Pizzeria</h1>
 
-        <MenuList />
+        <MenuList authenticated={this.state.authenticated} />
         <Login
           authenticated={() =>
             this.setState({ authError: undefined, authenticated: true })

@@ -14,7 +14,7 @@ describe("Logged in user can see add to order button", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/auth/sign_in",
-      response: "fixture:successfull_login.json",
+      response: "fixture:login.json",
       headers: {
         uid: "user@mail.com",
       },
