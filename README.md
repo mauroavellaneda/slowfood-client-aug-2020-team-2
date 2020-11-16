@@ -20,8 +20,8 @@ Features
 
 ## Authors:
 
-[Mauro Avellaneda](https://github.com/kermit-klein)  
-[Emiliano Mainero](https://github.com/viamarcus)  
+[Mauro Avellaneda](https://github.com/mauroavellaneda)
+[Emiliano Mainero](https://github.com/emiliano-ma)
 [Johan Berglund](https://github.com/johanperjulius1)
 [Sebastian Niewiadomski](https://github.com/SebastianN97)
 
