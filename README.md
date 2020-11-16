@@ -1,7 +1,7 @@
 
 # SlowFood Challenge
 
-[![Netlify Status]()
+
  
 
 
